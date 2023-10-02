@@ -1,0 +1,2 @@
+google-api-python-client==2.22.0
+rich==10.12.0
