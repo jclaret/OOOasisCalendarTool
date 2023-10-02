@@ -58,22 +58,26 @@ Run the script using the command:
 
 - Enable Out of Office from 2023-10-09 to 2023-10-12
 ```
-OOOasis.py --enable-outofoffice --start-date 2023-10-09 --end-date 2023-10-12
+$ OOOasis.py --enable-outofoffice --start-date 2023-10-09 --end-date 2023-10-12
+OutOfOffice event created (Id: 541gmpjbgdjstobc4khfceoi50 from 2023-10-09 to 2023-10-12 on calendar rh-eng-telco5g-integration
 ```
 
 - Check if there's Out of Office
 ```
-OOOasis.py --check-outofoffice
+$ OOOasis.py --check-outofoffice
+☀️ 🏖️ 🌴 2023-10-09 to 2023-10-12 - jclaretm -- PTO (Event ID: 541gmpjbgdjstobc4khfceoi50, Type: default) on rh-eng-telco5g-integration
 ```
 
 - Check if a team member is Out of Office today
 ```
-OOOasis.py --is-ooo-today --team-member ofamera
+$ OOOasis.py --is-ooo-today --team-member jclaretm
+User jclaretm is not Out of Office today.
 ```
 
 - Disable Out of Office will delete events 
 ```
-OOOasis.py --disable-outofoffice
+$ OOOasis.py --disable-outofoffice
+Successfully disabled Out of Office for jclaretm on rh-eng-telco5g-integration.
 ```
 
 ### **References**:
