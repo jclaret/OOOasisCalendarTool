@@ -26,7 +26,7 @@
 ## **Setup**:
 
 1. **Google API Credentials**:
-- Visit the Google Developer Console and create a new project.
+- Visit the [Google Developer Console](https://console.cloud.google.com/cloud-resource-manager) and create a new project.
 - Enable the Google Calendar API for the project.
 - Create OAuth 2.0 client IDs and download the `client_secret.json` file.
 - Place the `client_secret.json` file in the same directory as `oooasis.py`.
