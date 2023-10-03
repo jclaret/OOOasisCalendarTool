@@ -1,5 +1,5 @@
 # **Overview**:
-`OOOasis.py` is a command-line tool designed to manage Google Calendar events, specifically focusing on Out of Office (OOO) events. The script provides functionalities to check, enable, and disable OOO events for a user or a team member.
+`oooasis.py` is a command-line tool designed to manage Google Calendar events, specifically focusing on Out of Office (OOO) events. The script provides functionalities to check, enable, and disable OOO events for a user or a team member.
 
 ---
 
@@ -29,10 +29,10 @@
 - Visit the Google Developer Console and create a new project.
 - Enable the Google Calendar API for the project.
 - Create OAuth 2.0 client IDs and download the `client_secret.json` file.
-- Place the `client_secret.json` file in the same directory as `OOOasis.py`.
+- Place the `client_secret.json` file in the same directory as `oooasis.py`.
 
 2. **Configuration File**:
-- Create a `config.ini` file in the same directory as `OOOasis.py`.
+- Create a `config.ini` file in the same directory as `oooasis.py`.
 - Add default configurations like `default_team_calendar`, `timezone`, and `default_personal_calendar`.
 
 3. **Install Dependencies**:
@@ -58,25 +58,25 @@ Run the script using the command:
 
 - Enable Out of Office from 2023-10-09 to 2023-10-12
 ```
-$ OOOasis.py --enable-outofoffice --start-date 2023-10-09 --end-date 2023-10-12
+$ oooasis.py --enable-outofoffice --start-date 2023-10-09 --end-date 2023-10-12
 OutOfOffice event created (Id: 541gmpjbgdjstobc4khfceoi50 from 2023-10-09 to 2023-10-12 on calendar rh-eng-telco5g-integration
 ```
 
 - Check if there's Out of Office
 ```
-$ OOOasis.py --check-outofoffice
+$ oooasis.py --check-outofoffice
 ☀️ 🏖️ 🌴 2023-10-09 to 2023-10-12 - jclaretm -- PTO (Event ID: 541gmpjbgdjstobc4khfceoi50, Type: default) on rh-eng-telco5g-integration
 ```
 
 - Check if a team member is Out of Office today
 ```
-$ OOOasis.py --is-ooo-today --team-member jclaretm
+$ oooasis.py --is-ooo-today --team-member jclaretm
 User jclaretm is not Out of Office today.
 ```
 
 - Disable Out of Office will delete events 
 ```
-$ OOOasis.py --disable-outofoffice
+$ oooasis.py --disable-outofoffice
 Successfully disabled Out of Office for jclaretm on rh-eng-telco5g-integration.
 ```
 
