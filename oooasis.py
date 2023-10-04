@@ -93,15 +93,19 @@ class GoogleCalendarAuth:
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    "client_secret.json", SCOPES
-                )
+                try:
+                    flow = InstalledAppFlow.from_client_secrets_file(
+                        "client_secret.json", SCOPES
+                    )
+                except FileNotFoundError:
+                    console.print("[bold red]Error:[/bold red] 'client_secret.json' not found.")
+                    console.print("Please add the 'client_secret.json' file and retry.", style="bold yellow")
+                    sys.exit(1)  # Exit the script with an error code
                 creds = flow.run_local_server(port=0)
             with open("token.json", "w", encoding='utf-8') as token:
                 token.write(creds.to_json())
 
         return build("calendar", "v3", credentials=creds)
-
 
 class GoogleCalendarManager:
     """
@@ -611,7 +615,30 @@ def main():
         - Error messages are printed to the console if required arguments for an operation
           are missing.
     """
-    parser = argparse.ArgumentParser(description="Google Calendar Command Line Tool")
+    example_text = '''
+    Examples:
+    $ oooasis.py --enable-outofoffice --start-date 2023-10-09 --end-date 2023-10-12
+    OutOfOffice event created (Id: 541gmpjbgdjstobc4khfceoi50 from 2023-10-09 to 2023-10-12 on calendar rh-eng-telco5g-integration
+    
+    $ oooasis.py --check-outofoffice
+    ☀️ 🏖️ 🌴 2023-10-09 to 2023-10-12 - jclaretm -- PTO (Event ID: 541gmpjbgdjstobc4khfceoi50, Type: default) on rh-eng-telco5g-integration
+    
+    $ oooasis.py --is-ooo-today --team-member jclaretm
+    User jclaretm is not Out of Office today.
+    
+    $ oooasis.py --disable-outofoffice
+    Successfully disabled Out of Office for jclaretm on rh-eng-telco5g-integration.
+    '''
+
+    # Initialize console object from the rich library
+    console = Console()
+    
+    parser = argparse.ArgumentParser(
+        description="Google Calendar Command Line Tool",
+        epilog=example_text,  # Add example_text to epilog to display it in help message
+        formatter_class=argparse.RawDescriptionHelpFormatter  # Maintain formatting for epilog text
+    )
+
     parser.add_argument(
         "--check-outofoffice",
         action="store_true",
@@ -648,6 +675,7 @@ def main():
 
     args = parser.parse_args()
 
+   # Instantiate GoogleCalendarManager
     calendar = GoogleCalendarManager()
 
     if len(sys.argv) == 1:
