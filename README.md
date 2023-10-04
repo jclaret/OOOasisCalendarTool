@@ -14,7 +14,7 @@
 
 3. **Event Types**:
    - Currently, only "default" and "workingLocation" events can be created using the API.
-   - Support for event types like `outOfOffice` will be made available in later API releases. See references.
+   - Support for event types like `outOfOffice` will be made available in later API releases. [See references](#References)
 
 ## **Set up your environment**:
 
@@ -87,6 +87,7 @@ Run the script using the command:
 - `--start-date [YYYY-MM-DD]`: Specify the start date for the OOO event.
 - `--end-date [YYYY-MM-DD]`: Specify the end date for the OOO event.
 - `--disable-outofoffice`: Disable Out of Office.
+- `--help`: See examples.
 
 ### **Examples**:
 
